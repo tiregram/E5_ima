@@ -49,6 +49,7 @@ namespace Projet_IMA.form
 
         }
 
+        public abstract Couleur drawPixel(V3 position, List<Light> listLight);
 
         // DECALAGE 
         public void setPosition(V3 v)
