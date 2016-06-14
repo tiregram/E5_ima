@@ -1,0 +1,8 @@
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\bin\Debug\Projet_IMA.exe
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\bin\Debug\Projet_IMA.pdb
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.Form1.resources
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.Properties.Resources.resources
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.csproj.GenerateResource.Cache
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.exe
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.pdb
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.csprojResolveAssemblyReference.cache
