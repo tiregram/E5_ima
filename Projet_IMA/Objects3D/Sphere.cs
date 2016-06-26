@@ -98,28 +98,23 @@ namespace Projet_IMA
             return false;
         }
 
-        public override Couleur drawPixel(V3 position, List<Light> listLight)
+        public override Couleur drawPixel(V3 positionInScene)
         {
             // test draw pixel
             // passage en spherique
-            V3 posionForSphere = position - this.getPosition() ; 
+            V3 posionForSphere = positionInScene - this.getPosition() ; 
 
-            double v = Math.Asin(position.z/this.rayon);
+            double v = Math.Asin(positionInScene.z/this.rayon);
 
-            double u;
-            if (Math.Asin(posionForSphere.x / this.rayon) == Math.Acos(posionForSphere.y / this.rayon))
-            {
-                 u = Math.Asin(posionForSphere.x / this.rayon);
-            }
-            else
-            {
-                 u = -Math.Asin(posionForSphere.x / this.rayon);
-            }
+            double u1 = posionForSphere.x  / this.rayon;
+            double u2 = posionForSphere.y  / this.rayon;
+
+            double u = Math.Atan(u1/u2);
 
 
             V3 vectSphere = new V3((float)(this.rayon * Math.Cos(v) * Math.Cos(u)),
-                                             (float)(this.rayon * Math.Cos(v) * Math.Sin(u)),
-                                             (float)(this.rayon * Math.Sin(v)));
+                                          (float)(this.rayon * Math.Cos(v) * Math.Sin(u)),
+                                          (float)(this.rayon * Math.Sin(v)));
 
             V3 copyvectSphere = new V3(vectSphere);
             copyvectSphere.Normalize();
@@ -153,10 +148,13 @@ namespace Projet_IMA
             
                 Couleur vcolor = new Couleur();
 
-                foreach (Light light in listLight)
-                    vcolor += light.applyLight(this, vecteurBump, this.getColor(u / (2 * Math.PI), v / Math.PI + Math.PI / 2));
-
-            // BitmapEcran.DrawPixel((int)((xecr + 10) * 957 / 20), (int)((yecr + 10) * (568 / 20)), new Couleur(1f, 1f, 1f));
+                foreach (Light light in RenderSing.getCurrentRender().getLight())
+                {
+                    
+                    vcolor += light.applyLight(this,vect, vecteurBump, this.getColor(u / (2 * Math.PI), v / Math.PI + Math.PI / 2));
+                }
+                
+                
 
                 return vcolor;
 
@@ -164,59 +162,8 @@ namespace Projet_IMA
 
         }
 
-        public override void draw(ZBuffer zBuffer,List<Light> listLight)
-        {
-            for (double u = 0.0; u <2*Math.PI ;u += 0.005  )
-            {
-                for (double v = -Math.PI/2; v < Math.PI/2; v += 0.005)
-                {
-                    V3 vectSphere =  new V3( (float)  (this.rayon * Math.Cos(v) * Math.Cos(u)),
-                                             (float)  (this.rayon * Math.Cos(v) * Math.Sin(u)),
-                                             (float)  (this.rayon * Math.Sin(v)));
+      
 
-                    V3 copyvectSphere = new V3(vectSphere);
-                    copyvectSphere.Normalize();
-
-                    float dhsdu;
-                    float dhsdv;
-
-                    this.getBump(u/(Math.PI*2),v/Math.PI + Math.PI/2, out dhsdu,out  dhsdv);
-
-
-                    V3 dmsdu = new V3(  (float)(-1  * Math.Cos(v) * Math.Sin(u)),
-                                        (float)(1 * Math.Cos(v) * Math.Cos(u)),
-                                        0.0f);
-
-                    V3 dmsdv = new V3(  (float)(-1  * Math.Sin(v) * Math.Cos(u)),
-                                        (float)(-1 * Math.Sin(v) * Math.Sin(u)),
-                                        (float)(1  * Math.Cos(v)));
-
-                    V3 dmpsdu = dmsdu + dhsdu * copyvectSphere;
-                    V3 dmpsdv = dmsdv + dhsdv * copyvectSphere;
-                   
-
-                    V3 Np = ((dmpsdu ^ dmpsdv) / (dmpsdu ^ dmpsdv).Norm());
-
-                    V3 vecteurBump = Np;
-
-                    V3 vect = this.getPosition() + vectSphere;
-
-                    int xecr = (int)vect.x;
-                    int yecr = (int)vect.z;
-
-                    if (vect.y < zBuffer[xecr,yecr])
-                    {
-                        Couleur vcolor = new Couleur();
-                       
-                        foreach (Light light in listLight)
-                            vcolor += light.applyLight(this,vecteurBump,this.getColor(u/(2*Math.PI),v/Math.PI + Math.PI / 2));
-
-                        zBuffer[xecr, yecr] = vect.y;
-                        BitmapEcran.DrawPixel(xecr,yecr,vcolor);
-                    }
-                }
-            }
-
-        }
+        
     }
 }

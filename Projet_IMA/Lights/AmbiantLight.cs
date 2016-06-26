@@ -13,7 +13,7 @@ namespace Projet_IMA.Lights
 
         }
 
-        public override Couleur applyLight(Object3D b,V3 v, Couleur color_surface)
+        public override Couleur applyLight(Object3D b,V3 pos , V3 v, Couleur color_surface)
         {
             return this.couleur * color_surface; 
         }

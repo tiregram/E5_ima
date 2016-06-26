@@ -6,3 +6,5 @@ C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.csproj.
 C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.exe
 C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.pdb
 C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.csprojResolveAssemblyReference.cache
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.Form2.resources
+C:\Users\ruhtra\work\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.Form3.resources

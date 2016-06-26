@@ -17,9 +17,24 @@ namespace Projet_IMA.Lights
         }
 
 
-        public override Couleur applyLight(Object3D b, V3 v, Couleur color_surface)
+        public override Couleur applyLight(Object3D enlightmentObject, V3 positionOnScene ,V3 normal, Couleur color_surface)
         {
-            return this.diffuse(b,v,color_surface) + this.specular(b,v,color_surface);
+            
+            foreach(Object3D one in RenderSing.getCurrentRender().getObject())
+            {
+                V3 dirN = new V3(direction);
+                dirN.Normalize();
+
+                double t = 0;
+                
+                if (enlightmentObject != one && one.testColition(positionOnScene,dirN,out t ))
+                {
+                    return new Couleur(0f,0f,0f);
+                }
+            }
+
+            return  this.diffuse(enlightmentObject,normal,color_surface) +
+                    this.specular(enlightmentObject,normal,color_surface);
         }
 
         public  Couleur diffuse(Object3D b, V3 v, Couleur color_surface)
@@ -39,7 +54,7 @@ namespace Projet_IMA.Lights
 
             float sca = (copy_pos * copy_v);
             V3 v_curent_perfect = (copy_v * sca * 2.0f) - copy_pos;
-            V3 v_current_oeil = -(v + b.getPosition()) + ProjetEleve.eyesPosition;
+            V3 v_current_oeil = -(v + b.getPosition()) + RenderSing.getCurrentRender().getEyesPosition();
 
             float a = (float)Math.Pow((Math.Max((v_curent_perfect * v_current_oeil) / (v_curent_perfect.Norm() * v_current_oeil.Norm()), 0)), 30);
             return this.couleur * a;

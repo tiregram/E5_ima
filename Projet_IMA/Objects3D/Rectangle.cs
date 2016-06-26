@@ -12,8 +12,8 @@ namespace Projet_IMA.form
         V3 largeur;
         V3 longueur;
 
-        private Rectangle(V3 p_position,V3 p_largeur,V3 p_longueur,Texture difuse ,Couleur p_couleur,Texture bump)
-            :base(p_position,difuse, p_couleur,bump)
+        private Rectangle(V3 p_position, V3 p_largeur, V3 p_longueur, Texture difuse, Couleur p_couleur, Texture bump)
+            : base(p_position, difuse, p_couleur, bump)
         {
             this.largeur = p_largeur;
             this.longueur = p_longueur;
@@ -21,10 +21,10 @@ namespace Projet_IMA.form
 
 
         public Rectangle(V3 p_position, V3 p_largeur, V3 p_longueur, Couleur p_couleur)
-           : this(p_position,p_largeur,p_longueur, null, p_couleur, null)
+           : this(p_position, p_largeur, p_longueur, null, p_couleur, null)
         { }
 
-        public Rectangle(V3 p_position, V3 p_largeur, V3 p_longueur, Texture difuse,  Texture bump)
+        public Rectangle(V3 p_position, V3 p_largeur, V3 p_longueur, Texture difuse, Texture bump)
          : this(p_position, p_largeur, p_longueur, difuse, new Couleur(), bump)
         { }
 
@@ -57,7 +57,7 @@ namespace Projet_IMA.form
             double la = (this.largeur * ai) / (this.largeur * this.largeur);
             double lo = (this.longueur * ai) / (this.longueur * this.longueur);
 
-            if ( 0 < lo && lo < 1 && 0 < la && la < 1  )
+            if (0 < lo && lo < 1 && 0 < la && la < 1)
             {
                 TPositionColition = t;
                 return true;
@@ -71,12 +71,12 @@ namespace Projet_IMA.form
 
 
 
-        public override Couleur drawPixel(V3 position, List<Light> listLight)
+        public override Couleur drawPixel(V3 position)
         {
-            V3 ai = position - this.getPosition() ;
+            V3 ai = position - this.getPosition();
 
-            double la = (this.largeur  * ai)/(this.largeur * this.largeur) ;
-            double lo = (this.longueur * ai)/(this.longueur * this.longueur);
+            double la = (this.largeur * ai) / (this.largeur * this.largeur);
+            double lo = (this.longueur * ai) / (this.longueur * this.longueur);
 
             V3 vectRect = ((float)la * this.largeur) + ((float)lo * this.longueur);
 
@@ -105,77 +105,21 @@ namespace Projet_IMA.form
 
             V3 vecteurBump = Np;
 
-            V3 vect = this.getPosition() + vectRect;
+            V3 position_point = this.getPosition() + vectRect;
 
- 
-           
+
+
             Couleur vcolor = new Couleur();
 
-            foreach (Light light in listLight)
-                    vcolor += light.applyLight(this, vecteurBump, this.getColor(la, lo));
+            foreach (Light light in RenderSing.getCurrentRender().getLight())
+            {
+                vcolor += light.applyLight(this, position_point ,vecteurBump, this.getColor(la, lo));
+            }
 
             return vcolor;
-            
-        
-
-
-    }
-
-        public override void draw(ZBuffer zBuffer, List<Light> listLight)
-        {
-
-            for (double la = 0.0; la < 1; la += 0.005)
-            {
-                for (double lo = 0.0; lo <1; lo += 0.005)
-                {
-                    V3 vectRect = ((float)la * this.largeur) + ((float)lo * this.longueur);
-                                          
-                    V3 copyVectRect = new V3(vectRect);
-                    copyVectRect.Normalize();
-
-                    float dhsdu;
-                    float dhsdv;
-
-                    this.getBump(la, lo, out dhsdu, out dhsdv);
-
-
-                    V3 dmsdu = new V3((float)(-1 * Math.Cos(lo) * Math.Sin(la)),
-                                        (float)(1 * Math.Cos(lo) * Math.Cos(la)),
-                                        0.0f);
-
-                    V3 dmsdv = new V3((float)(-1 * Math.Sin(lo) * Math.Cos(la)),
-                                        (float)(-1 * Math.Sin(lo) * Math.Sin(la)),
-                                        (float)(1 * Math.Cos(lo)));
-
-                    V3 dmpsdu = dmsdu + dhsdu * copyVectRect;
-                    V3 dmpsdv = dmsdv + dhsdv * copyVectRect;
-
-
-                    V3 Np = ((dmpsdu ^ dmpsdv) / (dmpsdu ^ dmpsdv).Norm());
-
-                    V3 vecteurBump = Np;
-
-                    V3 vect = this.getPosition() + vectRect;
-
-                    int xecr = (int)vect.x;
-                    int yecr = (int)vect.z;
-
-                    if (vect.y < zBuffer[xecr, yecr])
-                    {
-                        Couleur vcolor = new Couleur();
-
-                        foreach (Light light in listLight)
-                            vcolor += light.applyLight(this, vecteurBump, this.getColor(la, lo));
-
-                        zBuffer[xecr, yecr] = vect.y;
-                        BitmapEcran.DrawPixel(xecr, yecr, vcolor);
-                    }
-                }
-            }
 
         }
     }
-
 
     
 }

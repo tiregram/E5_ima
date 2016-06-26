@@ -77,16 +77,10 @@ namespace Projet_IMA
                 
                 
 
-
-        // private functions
-
         private Couleur Interpol(float Lu, float Hv)
         {
-            int x = (int)(Lu);  // plus grand entier <=
+            int x = (int)(Lu);  
             int y = (int)(Hv);
-
-          //  float cx = Lu - x; // reste
-          //  float cy = Hv - y;
 
             x = x % Largeur;
             y = y % Hauteur;
@@ -95,18 +89,6 @@ namespace Projet_IMA
 
 
             return C[x, y];
-
-        /*    int xpu = (x + 1) % Largeur;
-            int ypu = (y + 1) % Hauteur;
-
-            float ccx = cx * cx;
-            float ccy = cy * cy;
-
-            return
-              C[x, y] * (1 - ccx) * (1 - ccy)
-            + C[xpu, y] * ccx * (1 - ccy)
-            + C[x, ypu] * (1 - ccx) * ccy
-            + C[xpu, ypu] * ccx * ccy;*/
         }
     }    
 }

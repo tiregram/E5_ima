@@ -49,7 +49,7 @@ namespace Projet_IMA.form
 
         }
 
-        public abstract Couleur drawPixel(V3 position, List<Light> listLight);
+        public abstract Couleur drawPixel(V3 position);
 
         // DECALAGE 
         public void setPosition(V3 v)
@@ -90,7 +90,7 @@ namespace Projet_IMA.form
             return this.couleur;
         }
 
-        public abstract void draw(ZBuffer zBuffer, List<Light> listLight);
+        
 
 
         protected Couleur getColor(double u, double v)
