@@ -28,9 +28,7 @@ namespace Projet_IMA
 
         private void button1_Click(object sender, EventArgs e)
         {
-            float x;
-            float y;
-            float z;
+            float x,y,z;
             float r;
 
             if ( 
@@ -38,7 +36,9 @@ namespace Projet_IMA
                 ! float.TryParse(this.y_tb.Text,out y) ||
                 ! float.TryParse(this.z_tb.Text,out z) ||
                 ! float.TryParse(this.rayon_tb.Text,out r))
-            { return; }
+            {
+                System.Console.WriteLine("Erreur sur les donnée.");
+                return; }
 
 
            
@@ -46,10 +46,11 @@ namespace Projet_IMA
             Sphere create;
             if (this.color_rb.Checked)
             {
+                
                 Couleur cl = new Couleur();
-                cl.B = this.colorDialog1.Color.B;
-                cl.R = this.colorDialog1.Color.R;
-                cl.V = this.colorDialog1.Color.G; // hahah fr vs en
+                cl.B = ((float)(this.colorDialog1.Color.B))/256.0f;
+                cl.R = ((float)(this.colorDialog1.Color.R)) / 256.0f; ;
+                cl.V = ((float)(this.colorDialog1.Color.G)) / 256.0f; ; // hahah fr vs en
 
                 create = new Sphere(position, r, cl);
             }
@@ -57,20 +58,22 @@ namespace Projet_IMA
             {
                 
                 Texture texture = new Texture(this.openFileDialog1.FileName);
-                Texture bump = new Texture(this.openFileDialog1.FileName);
-                if (this.checkBox1.FileName)
 
-                new Sphere(position, r,texture);
+
+                if (this.checkBox1.Checked)
+                {
+                    Texture bump = new Texture(this.openFileDialog2.FileName);
+                    create = new Sphere(position, r, texture, bump);
+                }
+                else
+                {
+
+                    create = new Sphere(position, r, texture, null);
+                }
             }
 
-           
-
-            RenderSing.getCurrentRender()
-                .addObject(
-                    create
-                );
-
             this.PutInThislistBox.Items.Add(create);
+            this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -91,6 +94,27 @@ namespace Projet_IMA
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            this.openFileDialog1.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog2.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

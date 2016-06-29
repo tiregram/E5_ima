@@ -12,6 +12,7 @@ namespace Projet_IMA
         int Hauteur;
         int Largeur;
         Couleur [,] C;
+        public string path;
 
         // public functions
         // u,v compris entre 0 et 1
@@ -46,7 +47,7 @@ namespace Projet_IMA
         public Texture(string ff)
         {
             string s = System.IO.Path.GetFullPath("..\\..");
-            string path = System.IO.Path.Combine(s,"textures",ff);
+            path = System.IO.Path.Combine(s,"textures",ff);
             Bitmap B = new Bitmap(path); 
             
             Hauteur = B.Height;

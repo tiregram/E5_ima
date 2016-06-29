@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using Projet_IMA.form;
 
 namespace Projet_IMA
 {
@@ -26,6 +27,8 @@ namespace Projet_IMA
 
         private void button1_Click(object sender, EventArgs e)
         {
+            RenderSing.getCurrentRender().addObjects( this.listBox1.Items.);
+
             BitmapEcran.RefreshScreen(new Couleur(0,0,0));
             ProjetEleve.Go();
             BitmapEcran.Show();          
@@ -133,19 +136,63 @@ namespace Projet_IMA
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+             
+           
         }
 
         private void listBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
 
+            Console.WriteLine("lapiaaan"+e);
 
         }
 
         private void listBox1_ControlRemoved(object sender, ControlEventArgs e)
         {
-            
+            Console.WriteLine("lapin");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form3 a = new Form3();
+            a.setLB(this.listBox1);
+            a.Activate();
+            a.Show();
+        }
+
+        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (this.listBox1.SelectedIndex >= 0)
+                    this.listBox1.Items.RemoveAt(this.listBox1.SelectedIndex);
+            }
+                
+        }
+
+     
+
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = this.listBox1.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                Object3D elementToModif = (Object3D)this.listBox1.Items[index];
+                if (elementToModif is form.Rectangle)
+                {
+                    form.Rectangle elementToModifCast = (form.Rectangle) elementToModif; 
+                    Form3 recModifier = new Form3(elementToModifCast);
+                    recModifier.Activate();
+                    recModifier.Show();
+                    
+                }
+                else
+                if (elementToModif is Sphere)
+                {
+
+                }
+                                    
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Projet_IMA.form
         private Texture bumpMap;
         private Couleur couleur;
 
+
         protected Object3D(V3 p_position,
                         Texture p_texture,
                         Couleur p_couleur,
@@ -26,6 +27,8 @@ namespace Projet_IMA.form
             this.bumpMap = p_bumpMap;
             this.position = p_position;
         }
+
+        public void setCouleur(Couleur c) { this.couleur = c; }
 
         protected Object3D(V3 p_position,
                         Couleur p_couleur,
@@ -78,7 +81,7 @@ namespace Projet_IMA.form
             this.bumpMap = pbumpMap;
         }
 
-        protected Texture getBumpMap()
+        public Texture getBumpMap()
         {
             return this.bumpMap;
         }

@@ -7,10 +7,16 @@ using System.Text;
 
 namespace Projet_IMA.form
 {
-    class Rectangle : Object3D
+    public class Rectangle : Object3D
     {
         V3 largeur;
         V3 longueur;
+
+        public void setVect1(V3 l) { this.largeur = l; }
+        public void setVect2(V3 l) { this.longueur = l; }
+        public V3 getVect1() {return this.largeur; }
+        public V3 getVect2() {return this.longueur; }
+
 
         private Rectangle(V3 p_position, V3 p_largeur, V3 p_longueur, Texture difuse, Couleur p_couleur, Texture bump)
             : base(p_position, difuse, p_couleur, bump)
@@ -19,6 +25,9 @@ namespace Projet_IMA.form
             this.longueur = p_longueur;
         }
 
+        public Rectangle()
+          : this(new V3(), new V3(), new V3(), null, new Couleur(), null)
+        { }
 
         public Rectangle(V3 p_position, V3 p_largeur, V3 p_longueur, Couleur p_couleur)
            : this(p_position, p_largeur, p_longueur, null, p_couleur, null)
@@ -42,13 +51,10 @@ namespace Projet_IMA.form
             V3 R0a = this.getPosition() - positionStart;
             double t = (R0a * n) / (direction * n);
 
-
-
             if (t < 0)
             {
                 TPositionColition = 0;
                 return false;
-
             }
 
 

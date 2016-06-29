@@ -44,6 +44,13 @@ namespace Projet_IMA
         private int resolution_Y;
 
         public void setResolutionX(int p_x) { this.resolution_X = p_x; }
+
+        internal void addObjects(List<Object3D> list)
+        {
+            foreach (Object3D one in list)
+                this.addObject(one);
+        }
+
         public void setResolutionY(int p_y) { this.resolution_Y = p_y; }
         public int getResolutionX() { return this.resolution_X; }
         public int getResolutionY() { return this.resolution_Y; }

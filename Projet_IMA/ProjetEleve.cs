@@ -17,32 +17,34 @@ namespace Projet_IMA
         {
             skymap = new Texture("b1.jpg");
 
-          //  RenderSing.getCurrentRender().clear();
-          /*
-            RenderSing.getCurrentRender()
-                .addObject(new Rectangle(   new V3(-50f, 0f, -10f),
-                                            new V3(100f, 0f, 0f),
-                                            new V3(0, 100f, 0f),
-                                            new Texture("brick01.jpg"),
-                                            new Texture("lead_bump.jpg")))
+            //  RenderSing.getCurrentRender().clear();
+            /*
+              RenderSing.getCurrentRender()
+                  .addObject(new Rectangle(   new V3(-50f, 0f, -10f),
+                                              new V3(100f, 0f, 0f),
+                                              new V3(0, 100f, 0f),
+                                              new Texture("brick01.jpg"),
+                                              new Texture("lead_bump.jpg")))
 
-                .addObject(new Rectangle(   new V3(-20.0f, 50f, 10f),
-                                            new V3(20f, 20f,10f),
-                                            new V3(0,0,20f),
-                                            new Texture("lead.jpg"),
-                                            new Texture("lead_bump.jpg")))
+                  .addObject(new Rectangle(   new V3(-20.0f, 50f, 10f),
+                                              new V3(20f, 20f,10f),
+                                              new V3(0,0,20f),
+                                              new Texture("lead.jpg"),
+                                              new Texture("lead_bump.jpg")))
 
-                .addObject(new Sphere(      new V3(0.0f, 50f, 0.0f),
-                                            15f,
-                                            new Texture("carreau.jpg"),
-                                            new Texture("bump38.jpg")))
+                  .addObject(new Sphere(      new V3(0.0f, 50f, 0.0f),
+                                              15f,
+                                              new Texture("carreau.jpg"),
+                                              new Texture("bump38.jpg")))
 
-                .addObject(new Sphere(      new V3(20.0f, 75f, 0.0f), 
-                                            10f,
-                                            new Couleur(1f,0,0),
-                                            new Texture("bump38.jpg")))
-                ;
-                */
+                  .addObject(new Sphere(      new V3(20.0f, 75f, 0.0f), 
+                                              10f,
+                                              new Couleur(1f,0,0),
+                                              new Texture("bump38.jpg")))
+                  ;
+                  */
+
+
             RenderSing.getCurrentRender()
                 .addLight(new DirectionalLight( new V3(1f, -1f, 1f),
                                                 new Couleur(.8f, .8f, .8f)))
