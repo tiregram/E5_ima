@@ -12,7 +12,14 @@ namespace Projet_IMA
     {
         
         private float rayon;
-        
+
+
+        public Sphere()
+            : this(new V3(),0,new Couleur())
+        {
+
+        }
+
         public Sphere(V3 p_trans, float p_ray, Couleur p_couleur)
             :this(p_trans,p_ray,p_couleur,null)
         {           
@@ -30,6 +37,9 @@ namespace Projet_IMA
         {
             this.rayon = p_ray;
         }
+
+        public float getRayon() { return this.rayon; }
+        public void setRayon(float r) { this.rayon = r; }
 
         public override bool testColition(V3 positionStart,V3 direction ,out double TPositionColition )
         {

@@ -37,10 +37,9 @@
             this.y_tb = new System.Windows.Forms.TextBox();
             this.z_tb = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.bump_cb = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -109,6 +108,7 @@
             this.y_tb.Name = "y_tb";
             this.y_tb.Size = new System.Drawing.Size(37, 20);
             this.y_tb.TabIndex = 8;
+            this.y_tb.TextChanged += new System.EventHandler(this.y_tb_TextChanged);
             // 
             // z_tb
             // 
@@ -137,16 +137,16 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // checkBox1
+            // bump_cb
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(195, 98);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(38, 17);
-            this.checkBox1.TabIndex = 52;
-            this.checkBox1.Text = "on";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.bump_cb.AutoSize = true;
+            this.bump_cb.Location = new System.Drawing.Point(195, 98);
+            this.bump_cb.Name = "bump_cb";
+            this.bump_cb.Size = new System.Drawing.Size(38, 17);
+            this.bump_cb.TabIndex = 52;
+            this.bump_cb.Text = "on";
+            this.bump_cb.UseVisualStyleBackColor = true;
+            this.bump_cb.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label4
             // 
@@ -213,7 +213,7 @@
             this.ClientSize = new System.Drawing.Size(284, 168);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.bump_cb);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);
@@ -246,10 +246,9 @@
         private System.Windows.Forms.TextBox y_tb;
         private System.Windows.Forms.TextBox z_tb;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.ColorDialog colorDialog2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox bump_cb;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label5;

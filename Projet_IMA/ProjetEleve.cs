@@ -18,7 +18,7 @@ namespace Projet_IMA
             skymap = new Texture("b1.jpg");
 
             //  RenderSing.getCurrentRender().clear();
-            /*
+            
               RenderSing.getCurrentRender()
                   .addObject(new Rectangle(   new V3(-50f, 0f, -10f),
                                               new V3(100f, 0f, 0f),
@@ -42,7 +42,7 @@ namespace Projet_IMA
                                               new Couleur(1f,0,0),
                                               new Texture("bump38.jpg")))
                   ;
-                  */
+                  
 
 
             RenderSing.getCurrentRender()
@@ -101,9 +101,10 @@ namespace Projet_IMA
                     }
                     else
                     {
-                        //sky map inplements
+                        //TODO sky map inplements
                         color_pixel = new Couleur(0,0,0);
                     }
+
                     RenderSing.getCurrentRender().Draw(x, z, color_pixel);
                 }
             }

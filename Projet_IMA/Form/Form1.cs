@@ -16,6 +16,7 @@ namespace Projet_IMA
         public Form1()
         {
             InitializeComponent();
+
             pictureBox1.Image = BitmapEcran.Init(pictureBox1.Width, pictureBox1.Height);
             this.textBox1.Text = RenderSing.getCurrentRender().getResolutionX().ToString();
             this.textBox2.Text = RenderSing.getCurrentRender().getResolutionY().ToString();
@@ -27,7 +28,8 @@ namespace Projet_IMA
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RenderSing.getCurrentRender().addObjects( this.listBox1.Items.);
+            RenderSing.getCurrentRender().clear();
+            RenderSing.getCurrentRender().addObjects( this.listBox1.Items.Cast<Object3D>().ToList());
 
             BitmapEcran.RefreshScreen(new Couleur(0,0,0));
             ProjetEleve.Go();
@@ -64,9 +66,27 @@ namespace Projet_IMA
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
+        private void groupBox1_Enter(object sender, EventArgs e) { }
 
+        private void zoom(object sender, MouseEventArgs e)
+        {
+            if (e.Delta != 0)
+            {
+                if (e.Delta <= 0)
+                {
+                    //set minimum size to zoom
+                    if (this.pictureBox1.Width < 50)
+                        return;
+                }
+                else
+                {
+                    //set maximum size to zoom
+                    if (this.pictureBox1.Width > 500)
+                        return;
+                }
+                this.pictureBox1.Width += Convert.ToInt32(this.pictureBox1.Width * e.Delta / 1000);
+                this.pictureBox1.Height += Convert.ToInt32(this.pictureBox1.Height * e.Delta / 1000);
+            }
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -170,7 +190,9 @@ namespace Projet_IMA
                 
         }
 
-     
+
+
+
 
         private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -189,10 +211,24 @@ namespace Projet_IMA
                 else
                 if (elementToModif is Sphere)
                 {
+                    Sphere elementToModifCast = (Sphere)elementToModif;
+                    Form2 spheremodif = new Form2(elementToModifCast);
+                    spheremodif.Activate();
+                    spheremodif.Show();
 
                 }
                                     
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            this.pictureBox1.Focus();
         }
     }
 }

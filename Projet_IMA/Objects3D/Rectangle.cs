@@ -45,11 +45,11 @@ namespace Projet_IMA.form
         public override bool testColition(V3 positionStart, V3 direction, out double TPositionColition)
         {
 
-            V3 n = (this.largeur ^ this.longueur);
-            n.Normalize();
+            V3 normaleToTheRect = (this.largeur ^ this.longueur);
+            normaleToTheRect.Normalize();
 
-            V3 R0a = this.getPosition() - positionStart;
-            double t = (R0a * n) / (direction * n);
+            V3 eyesToPosition = this.getPosition() - positionStart;
+            double t = (eyesToPosition * normaleToTheRect) / (direction * normaleToTheRect);
 
             if (t < 0)
             {
