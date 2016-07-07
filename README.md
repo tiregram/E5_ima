@@ -5,7 +5,7 @@
 Le contenue du dosier Project_IMA est sous license GPL V3. Le texte de la license est disponible dans le fichier LICENSE.
 
 ## Sujet
-Le sujet, le cours et les notes utiles à la realisation du projet son disponible dans le dossier sujet.
+Le sujet, le cours et les notes utiles à la realisation du projet sont disponibles dans le dossier sujet.
 
 ## Visual Studio
 
